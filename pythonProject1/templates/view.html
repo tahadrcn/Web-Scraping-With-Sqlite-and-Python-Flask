@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.min.css') }}">
+
+
+
+
+    <title>Document</title>
+</head>
+<body>
+   <!doctype html>
+<html>
+   <body style="background-color:#8f8f8f;">
+<nav style="background-color:#003153;" class="navbar navbar-expand-sm ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="javascript:void(0)">YAZLAB.COM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <form id="live-search" action="" class="styled" method="post">
+       <fieldset>
+        <input style="width:300px; margin-left:1000px;" type="text" class="text-input" id="filter" placeholder="Laptop ismi veya özelliği giriniz.." value="" />
+        <span id="filter-count"></span>
+       </fieldset>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row row-cols-4">
+         {% for row in rows %}
+  <div class="col-md-4">
+            <div class="box">
+                <div class="our-services settings">
+                    <img style="width:150px;" src={{row["resim"]}}>
+                    <h4>{{row["marka"]}}</h4>
+                      <p class="card-text">Ram:{{row["ram"]}}</p>
+                      <p class="card-text">İşletim sistemi:{{row["isletim_sistemi"]}}</p>
+                      <p class="card-text">İşlemci tipi:{{row["islemci_tipi"]}}</p>
+                      <p class="card-text">İşlemci modeli:{{row["islemci_nesli"]}}</p>
+                      <p class="card-text">Disk türü:{{row["disk_tur"]}}</p>
+                      <p class="card-text">Disk kapasitesi:{{row["disk_boyut"]}}</p>
+                      <p class="card-text">Ekran boyutu:{{row["ekran_boyut"]}}</p>
+                      <p class="card-text"> Fiyat:{{row["fiyat"]}}</p>
+                      <p class="card-text"> Site:{{row["Site"]}}</p>
+                      <a href={{row["link"]}} class="btn btn-primary">Detaylar</a>
+                </div>
+            </div>
+        </div>
+         {% endfor %}
+
+</div>
+
+
+<script>https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css</script>
+<script>https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js</script>
+<script>https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+    $("#filter").keyup(function(){
+        // Giriş alanındaki metni alıp değerleri sıfırlıyoruz
+        var filter = $(this).val(), count = 0;
+        // Tablodaki veriler içerisinde gezinerek uygun değer varsa buluyoruz
+        $("div div").each(function(){
+            // Eğer kelimeye uygun metin yoksa alanı boşaltıyoruz
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+
+            // Eğer eşleşen ifade varsa count değerini 1 artırıyoruz
+            } else {
+                $(this).show();
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+   </body>
+</html>
+</body>
+</html>
